@@ -10,6 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,6 +26,8 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -31,3 +37,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+```
+
+**Step 4** → Click **"Commit changes"** → go to **Actions** tab → watch it run ✅
+
+---
+
+## If Step 2 Option Doesn't Appear
+
+Your repo might be **private**. GitHub Pages with GitHub Actions only works on **public repos** for free accounts.
+
+To fix → Go to:
+```
+https://github.com/Balajixd/My-portfolio/settings
+```
+Scroll all the way down → find **"Danger Zone"** → click **"Change visibility"** → set to **Public**
+
+---
+
+After all this your site will be live at:
+```
+https://balajixd.github.io/My-portfolio/
